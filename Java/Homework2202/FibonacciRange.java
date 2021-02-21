@@ -30,5 +30,4 @@ public class FibonacciRange implements Iterable<Integer> {
             }
         };
     }
-
 }
