@@ -12,8 +12,17 @@ public class Main {
             System.out.print(a[i] + "\t");
         }
         System.out.println();
-        for (int i : new RangeInterval(2, a.length)) {
-            System.out.print(a[i] + "\t");
+        while (true) {
+            try {
+                System.out.println("Enter number smaller than: " + a.length);
+                int num = sc.nextInt();
+                for (int i : new RangeInterval(num, a.length)) {
+                    System.out.print(a[i] + "\t");
+                }
+                break;
+            } catch (Exception e) {
+                System.out.println("NullPointerException");
+            }
         }
         System.out.println();
         for(int i : new FibonacciRange(sc.nextInt())) {
