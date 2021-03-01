@@ -65,10 +65,11 @@ public class LinkedList<T> {
         public Iterator<T> iterator() {
             return new Iterator<T>() {
                 Node<T> node = head;
+                int num = count;;
 
                 @Override
                 public boolean hasNext() {
-                    return count > 0;
+                    return num > 0;
                 }
 
                 @Override
@@ -78,7 +79,7 @@ public class LinkedList<T> {
                     if (hasNext() == false) {
                         node = head;
                     }
-                    count--;
+                    num--;
                     return temp.value;
                 }
             };
