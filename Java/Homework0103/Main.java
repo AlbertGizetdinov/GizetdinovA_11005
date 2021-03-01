@@ -1,8 +1,5 @@
 package Homework0103;
 
-import javax.sound.midi.Soundbank;
-import java.util.Iterator;
-
 public class Main {
     public static void main(String[] args) {
         //First task

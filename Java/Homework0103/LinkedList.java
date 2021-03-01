@@ -1,5 +1,4 @@
 package Homework0103;
-
 import java.util.Iterator;
 
 public class LinkedList<T> {
