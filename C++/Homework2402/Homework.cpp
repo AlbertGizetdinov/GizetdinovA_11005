@@ -23,8 +23,7 @@ int main()
     for (int i = 0; i < 4; ++i) {
         mas2[i] = i + 4;
     }
-    int *mas3 = new int[7];
-    mas3 = sumOfMas(mas1, mas2, 3, 4);
+    int *mas3 = sumOfMas(mas1, mas2, 3, 4);
     for (int i = 0; i < 7; ++i) {
         cout << mas3[i] << " ";
     }
