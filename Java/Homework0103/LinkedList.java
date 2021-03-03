@@ -5,7 +5,6 @@ public class LinkedList<T> {
     static class Node<T> {
         private T value;
         private Node<T> next = null;
-        private Node<T> prev = null;
     }
 
     Node<T> head = null;
@@ -17,12 +16,10 @@ public class LinkedList<T> {
         node.value = value;
         if (head == null) {
             node.next = null;
-            node.prev = null;
             head = node;
             last = node;
         } else {
             last.next = node;
-            node.prev = last;
             last = node;
         }
         count++;
@@ -43,16 +40,14 @@ public class LinkedList<T> {
     }
 
     void remove(int i) {
-        Node<T> node = head;
-        i--;
+        Node<T> nodePrev = head;
+        i = i - 2;
         while (i > 0) {
             i--;
-            node = node.next;
+            nodePrev = nodePrev.next;
         }
-        Node<T> nodeNext = node.next;
-        Node<T> nodePrev = node.prev;
-        nodePrev.next = nodeNext;
-        nodeNext.prev = nodePrev;
+        Node<T> node = nodePrev.next;
+        nodePrev.next = node.next;
         count--;
     }
 
