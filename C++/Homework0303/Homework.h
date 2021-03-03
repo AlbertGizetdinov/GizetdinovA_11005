@@ -5,12 +5,12 @@ using namespace std;
 struct Node
 {
     int item;
-    Node * next;
+    Node * next = nullptr;
 };
 
 struct Stack
 {
-    Node * pHead;
+    Node * pHead = nullptr;
 
     void Push(int item)
     {
@@ -47,9 +47,10 @@ struct Stack
             return;
         }
         while (temp != nullptr) {
-            cout << temp->item << endl;
+            cout << temp->item << " ";
             temp = temp->next;
         }
+        cout << endl;
     }
 };
 
@@ -59,9 +60,9 @@ struct LinkedList
     Node * last;
     int count = 0;
 
-    void add(int num) {
+    void add(int item) {
         Node * node = new Node;
-        node->item = num;
+        node->item = item;
         if (head == nullptr) {
             node->next = nullptr;
             head = node;
@@ -97,5 +98,6 @@ struct LinkedList
             cout << temp->item << " ";
             temp = temp->next;
         }
+        cout << endl;
     }
 };
