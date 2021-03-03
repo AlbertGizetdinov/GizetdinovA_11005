@@ -22,7 +22,5 @@ int main()
 
     cout << "Third task" << endl;
     list->printAll();
-
-
     return 0;
 }
