@@ -42,6 +42,10 @@ struct Stack
 
     void printAll() {
         Node * temp = pHead;
+        if (temp == nullptr) {
+            cout << "0" << endl;
+            return;
+        }
         while (temp != nullptr) {
             cout << temp->item << endl;
             temp = temp->next;
@@ -85,6 +89,10 @@ struct LinkedList
 
     void printAll() {
         Node * temp = head;
+        if (temp == nullptr) {
+            cout << "0" << endl;
+            return;
+        }
         while (temp != nullptr) {
             cout << temp->item << " ";
             temp = temp->next;
