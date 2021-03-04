@@ -3,6 +3,7 @@
 using namespace std;
 
 int main() {
+    cout << "First task" << endl;
     LinkedList * list = new LinkedList;
     list->add(1);
     list->add(2);
@@ -18,6 +19,7 @@ int main() {
     list->removeAt(5);
     list->printAll();
 
+    cout << "\nSecond task" << endl;
     Queue * queue = new Queue;
     queue->Enqueue(1);
     queue->Enqueue(2);
@@ -27,6 +29,7 @@ int main() {
     cout << queue->Dequeue() << endl;
     cout << queue->Dequeue() << endl;
     queue->Enqueue(10);
+    cout << queue->Dequeue() << endl;
     cout << queue->Dequeue() << endl;
     cout << queue->Dequeue() << endl;
     return 0;
