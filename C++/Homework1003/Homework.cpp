@@ -3,7 +3,7 @@
 using namespace std;
 
 int main() {
-    /* LinkedList * list = new LinkedList;
+    LinkedList * list = new LinkedList;
     list->add(1);
     list->add(2);
     list->add(3);
@@ -16,7 +16,7 @@ int main() {
     cout << list->size() << endl;
     list->removeAt(5);
     list->removeAt(5);
-    list->printAll(); */
+    list->printAll();
 
     Queue * queue = new Queue;
     queue->Enqueue(1);
