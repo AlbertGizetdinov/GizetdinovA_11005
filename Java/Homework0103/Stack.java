@@ -1,7 +1,7 @@
 package Homework0103;
 import java.util.Iterator;
 
-public class Stack<T> {
+public class Stack<T> implements Iterable<T>{
     static class Node<T> {
         private T value;
         private Node<T> next = null;
@@ -35,38 +35,32 @@ public class Stack<T> {
         }
     }
 
-    StackIterator getIterator(){
-        return new StackIterator();
-    }
+    public Iterator<T> iterator() {
+        return new Iterator<T>() {
+            int num = 0;
+            Node<T> temp1 = head;
 
-    public class StackIterator implements Iterable<T> {
-        public Iterator<T> iterator() {
-            return new Iterator<T>() {
-                int num = 0;
-                Node<T> temp1 = head;
-
-                @Override
-                public boolean hasNext() {
-                    if (temp1 == head) {
-                        num++;
-                    }
-                    if (num == 2) {
-                        num = 0;
-                        return false;
-                    }
-                    return temp1 != null;
+            @Override
+            public boolean hasNext() {
+                if (temp1 == head) {
+                    num++;
                 }
-
-                @Override
-                public T next() {
-                    Node<T> temp2 = temp1;
-                    temp1 = temp2.next;
-                    if (hasNext() == false) {
-                        temp1 = head;
-                    }
-                    return temp2.value;
+                if (num == 2) {
+                    num = 0;
+                    return false;
                 }
-            };
-        }
+                return temp1 != null;
+            }
+
+            @Override
+            public T next() {
+                Node<T> temp2 = temp1;
+                temp1 = temp2.next;
+                if (hasNext() == false) {
+                    temp1 = head;
+                }
+                return temp2.value;
+            }
+        };
     }
 }

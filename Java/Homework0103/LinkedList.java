@@ -1,7 +1,7 @@
 package Homework0103;
 import java.util.Iterator;
 
-public class LinkedList<T> {
+public class LinkedList<T> implements Iterable<T>{
     static class Node<T> {
         private T value;
         private Node<T> next = null;
@@ -51,32 +51,26 @@ public class LinkedList<T> {
         count--;
     }
 
-    ListIterator getIterator(){
-        return new ListIterator();
-    }
+    public Iterator<T> iterator() {
+        return new Iterator<T>() {
+            Node<T> node = head;
+            int num = count;;
 
-    public class ListIterator implements Iterable<T> {
-        public Iterator<T> iterator() {
-            return new Iterator<T>() {
-                Node<T> node = head;
-                int num = count;;
+            @Override
+            public boolean hasNext() {
+                return num > 0;
+            }
 
-                @Override
-                public boolean hasNext() {
-                    return num > 0;
+            @Override
+            public T next() {
+                Node<T> temp = node;
+                node = temp.next;
+                if (hasNext() == false) {
+                    node = head;
                 }
-
-                @Override
-                public T next() {
-                    Node<T> temp = node;
-                    node = temp.next;
-                    if (hasNext() == false) {
-                        node = head;
-                    }
-                    num--;
-                    return temp.value;
-                }
-            };
-        }
+                num--;
+                return temp.value;
+            }
+        };
     }
 }

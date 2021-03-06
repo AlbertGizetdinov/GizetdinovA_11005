@@ -15,7 +15,7 @@ public class Main {
         System.out.println();
 
         //Second task
-        for (Integer value : stack.getIterator()) {
+        for (Integer value : stack) {
             System.out.print(value + "\t"); // 7, 5
         }
         System.out.println("\n");
@@ -45,7 +45,7 @@ public class Main {
         System.out.println("\n\n" + list.count() + "\n"); // 4
 
         //Fourth task
-        for (Integer value : list.getIterator()) {
+        for (Integer value : list) {
             System.out.print(value + "\t");
         }
     }
