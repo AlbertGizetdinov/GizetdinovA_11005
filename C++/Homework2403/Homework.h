@@ -3,9 +3,9 @@ using namespace std;
 
 struct MaxHeap
 {
-    int * array = 0;
+    int * array;
     int size = 0;
-    int maxSize = 0;
+    int maxSize;
 
     MaxHeap(int MaxSize) {
         array = new int[MaxSize];
