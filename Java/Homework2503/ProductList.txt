@@ -1,0 +1,5 @@
+Water 8
+Tea 6
+Juice 7
+Coffee 9
+Milk 5
