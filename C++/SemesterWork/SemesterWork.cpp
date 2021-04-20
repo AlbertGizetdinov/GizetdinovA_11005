@@ -3,47 +3,57 @@
 
 using namespace std;
 
-struct FenwickTree {
-    vector<int> bit;  // binary indexed tree
-    int n;
+struct FenwickTree{
 
-    FenwickTree(int n) {
-        this->n = n;
-        bit.assign(n, 0);
+    vector<int> ftree;
+
+    int F(int x){
+        return x & (-x);
     }
 
-    FenwickTree(vector<int> a) : FenwickTree(a.size()) {
-        for (size_t i = 0; i < a.size(); i++)
-            add(i, a[i]);
+    int sum(int x){
+        int sum = 0;
+        while(x > 0){
+            sum = sum + ftree[x];
+            x = x - F(x);
+        }
+        return sum;
     }
 
-    int sum(int r) {
-        int ret = 0;
-        for (; r >= 0; r = (r & (r + 1)) - 1)
-            ret += bit[r];
-        return ret;
+    int sum(int start, int end){
+        return sum(end) - sum(start - 1);
     }
 
-    int sum(int l, int r) {
-        return sum(r) - sum(l - 1);
+    void add(int id, int value){
+        while(id <= ftree.size()){
+            ftree[id] += value;
+            id = id + F(id);
+        }
     }
 
-    void add(int id, int delta) {
-        for (; id < n; id = id | (id + 1))
-            bit[id] += delta;
+    FenwickTree(vector<int> array){
+        int n = array.size();
+        ftree.assign(n + 1, 0);
+        for(int i = 0; i < n; ++i){
+            add(i + 1, array[i]);
+        }
     }
 };
 
-int main()
-{
-    FenwickTree *ftree = new FenwickTree(5);
-    ftree->add(0,1);
-    ftree->add(1,2);
-    ftree->add(0,7);
-    ftree->add(2,3);
-    ftree->add(3,4);
-    ftree->add(4,5);
-    cout << ftree->sum(3) << endl; // (1 + 7) + 2 + 3 + 4 = 17
-    cout << ftree->sum(2, 4) << endl; // 3 + 4 + 5 = 12
+int main(){
+    vector<int> arr = {1, 2, 3, 4, 5, 6};
+    FenwickTree ftree(arr);
+    cout << "Array is\n";
+    for(int i = 0; i < 6; ++i)
+        cout << arr[i] << " ";
+    cout << "\nSum of interval [1, 4] is " << ftree.sum(1, 4) << endl;
+
+    cout << "After changing 3 to 10, array is\n";
+    arr[3 - 1] += 7;
+    ftree.add(3, 7);
+    for(int i = 0; i < 6; ++i)
+        cout << arr[i] << " ";
+    cout << "\nSum of interval [1, 4] is " << ftree.sum(1, 4) << endl;
+
     return 0;
 }
