@@ -1,16 +1,15 @@
 import java.util.ArrayList;
-import java.util.List;
 
 public class OrdersTimeSaver implements OrdersSaver {
-    public List<Order> orders = new ArrayList<>();
+    public ArrayList<Order> orders = new ArrayList<>();
 
     @Override
-    public List<Order> getOrders() {
+    public ArrayList<Order> getOrders() {
         return orders;
     }
 
     @Override
-    public void saveOrders(List<Order> orders) {
+    public void saveOrders(ArrayList<Order> orders) {
         this.orders = orders;
     }
 }
