@@ -12,7 +12,6 @@ public class Main {
         treeSet.add("eight");
         treeSet.add("0");
         System.out.println("First task:\n" + treeSet);
-
         ArrayList<Integer> arrayList = new ArrayList<>();
         arrayList.add(1024);
         arrayList.add(-1);
@@ -22,7 +21,6 @@ public class Main {
 
         ArrayList<Integer> evenNumbers = arraySorting(arrayList, x -> x % 2 == 0);
         ArrayList<Integer> positiveNumbers = arraySorting(arrayList, x -> x > 0);
-
         System.out.println("Second task: " +
                 "\n1) Even numbers: " + evenNumbers +
                 "\n2) Positive numbers: " + positiveNumbers);
