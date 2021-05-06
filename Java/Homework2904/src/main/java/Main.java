@@ -20,7 +20,7 @@ public class Main {
             }
             System.out.println("The largest number of product: " + res + "\n");
         });
-
+        
         storage.addOrder("chair", 10);
         storage.addOrder("table", 5);
         storage.changeQuantity("table", 2);
