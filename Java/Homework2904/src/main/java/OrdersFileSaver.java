@@ -1,7 +1,6 @@
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 public class OrdersFileSaver implements OrdersSaver {
     private File file;
@@ -15,8 +14,8 @@ public class OrdersFileSaver implements OrdersSaver {
     }
 
     @Override
-    public List<Order> getOrders() {
-        List<Order> listOfOrders = new ArrayList<>();
+    public ArrayList<Order> getOrders() {
+        ArrayList<Order> listOfOrders = new ArrayList<>();
         try (ObjectInputStream oin = new ObjectInputStream(new FileInputStream(file))) {
             Order[] temp = (Order[]) oin.readObject();
             listOfOrders.addAll(Arrays.asList(temp));
@@ -28,7 +27,7 @@ public class OrdersFileSaver implements OrdersSaver {
     }
 
     @Override
-    public void saveOrders(List<Order> orders) {
+    public void saveOrders(ArrayList<Order> orders) {
         try (ObjectOutputStream oin = new ObjectOutputStream(new FileOutputStream(file))) {
             Order[] temp = new Order[orders.size()];
             for (int i = 0; i < orders.size(); i++) {

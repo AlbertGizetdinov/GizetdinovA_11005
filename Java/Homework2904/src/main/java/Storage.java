@@ -1,19 +1,26 @@
 import java.util.Iterator;
-import java.util.List;
+import java.util.ArrayList;
 
 public class Storage {
     public OrdersSaver orderSaver;
-    public List<Order> orderList;
+    public ArrayList<Order> orderList;
+    public ArrayList<ProductsListener> productListenersList = new ArrayList<>();
+
+    public void addProductsListener(ProductsListener productsListener) {
+        if (!productListenersList.contains(productsListener))
+            productListenersList.add(productsListener);
+    }
 
     public Storage(OrdersSaver orderSaver) {
         this.orderSaver = orderSaver;
-        this.orderList = orderSaver.getOrders();
+        orderList = orderSaver.getOrders();
     }
 
     public void addOrder(String name, int count) {
         Order order = new Order(name, count);
         this.orderList.add(order);
         this.orderSaver.saveOrders(this.orderList);
+        for (ProductsListener listener : productListenersList) listener.productsUpdated();
     }
 
     public Order getOrder(String name) {
@@ -34,6 +41,7 @@ public class Storage {
             this.orderList.remove(p);
         }
         this.orderSaver.saveOrders(this.orderList);
+        for (ProductsListener listener : productListenersList) listener.productsUpdated();
     }
 
     public void changeQuantity(String name, int quantity) {
@@ -42,6 +50,7 @@ public class Storage {
             order.setAmount(quantity);
         }
         this.orderSaver.saveOrders(this.orderList);
+        for (ProductsListener listener : productListenersList) listener.productsUpdated();
     }
 
     public void printAll() {

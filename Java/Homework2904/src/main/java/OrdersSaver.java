@@ -1,6 +1,6 @@
-import java.util.List;
+import java.util.ArrayList;
 
 public interface OrdersSaver {
-    List<Order> getOrders();
-    void saveOrders(List<Order> orders);
+    ArrayList<Order> getOrders();
+    void saveOrders(ArrayList<Order> orders);
 }
