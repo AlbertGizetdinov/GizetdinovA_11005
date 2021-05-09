@@ -15,12 +15,12 @@ public class Main {
             for (int i = 0; i < storage.orderList.size(); i++) {
                 if (storage.orderList.get(i).getAmount() > max) {
                     max = storage.orderList.get(i).getAmount();
-                    res = storage.orderList.get(i).name;
+                    res = storage.orderList.get(i).name; 
                 }
             }
             System.out.println("The largest number of product: " + res + "\n");
         });
-        
+
         storage.addOrder("chair", 10);
         storage.addOrder("table", 5);
         storage.changeQuantity("table", 2);
