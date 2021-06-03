@@ -96,77 +96,60 @@ public class Main {
             purchaseList.add(new Purchase(buyerName, shopName, productName));
         }
 
-        HashMap<String, HashMap<String, HashMap<String, Integer>>> buyers = new HashMap<>();
+        HashMap<String, HashMap<String, HashMap<String, Integer>>> cities = new HashMap<>();
         for (Buyer entry1 : buyersList) {
-            if (!buyers.containsKey(entry1.name)) {
-                HashMap<String, HashMap<String, Integer>> cities = new HashMap<>();
-                HashMap<String, Integer> products = new HashMap<>();
-                for (Discount entry2 : discountList) {
-                    if (entry2.buyerName == entry1.name) {
-                        for (Product entry3 : productList) {
-                            if (entry3.shopName == entry2.shopName) {
-                                for (Purchase entry4 : purchaseList) {
-                                    if (entry4.buyerName == entry1.name && entry4.shopName == entry2.shopName && entry4.productName == entry3.productName) {
-                                        products.put(entry4.productName, products.get(entry3.productName) + entry3.price * (100 - entry2.discount) / 100);
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-                cities.put(entry1.city, products);
-                buyers.put(entry1.name, cities);
-
-                continue;
-            }
-
-            HashMap<String, HashMap<String, Integer>> cities = buyers.get(entry1.name);
             if (!cities.containsKey(entry1.city)) {
+                HashMap<String, HashMap<String, Integer>> buyers = new HashMap<>();
                 HashMap<String, Integer> products = new HashMap<>();
                 for (Discount entry2 : discountList) {
-                    if (entry2.buyerName == entry1.name) {
-                        for (Product entry3 : productList) {
-                            if (entry3.shopName == entry2.shopName) {
-                                for (Purchase entry4 : purchaseList) {
-                                    if (entry4.buyerName == entry1.name && entry4.shopName == entry2.shopName && entry4.productName == entry3.productName) {
-                                        products.put(entry4.productName, products.get(entry3.productName) + entry3.price * (100 - entry2.discount) / 100);
-                                    }
-                                }
-                            }
+                    for (Product entry3 : productList) {
+                        for (Purchase entry4 : purchaseList) {
+                            products.put(entry3.productName, entry3.price * (100 - entry2.discount) / 100);
                         }
                     }
                 }
-                cities.put(entry1.city, products);
+                buyers.put(entry1.name, products);
+                cities.put(entry1.city, buyers);
 
                 continue;
             }
 
-            HashMap<String, Integer> products = cities.get(entry1.city);
-            for (Discount entry2 : discountList) {
-                if (entry2.buyerName == entry1.name) {
+            HashMap<String, HashMap<String, Integer>> buyers = cities.get(entry1.city);
+            if (!buyers.containsKey(entry1.name)) {
+                HashMap<String, Integer> products = new HashMap<>();
+                for (Discount entry2 : discountList) {
                     for (Product entry3 : productList) {
-                        if (entry3.shopName == entry2.shopName) {
-                            for (Purchase entry4 : purchaseList) {
-                                if (entry4.buyerName == entry1.name && entry4.shopName == entry2.shopName && entry4.productName == entry3.productName) {
-                                    products.put(entry4.productName, products.get(entry3.productName) + entry3.price * (100 - entry2.discount) / 100);
-                                }
-                            }
+                        for (Purchase entry4 : purchaseList) {
+                            products.put(entry3.productName, entry3.price * (100 - entry2.discount) / 100);
                         }
+                    }
+                }
+                buyers.put(entry1.name, products);
+
+                continue;
+            }
+
+            HashMap<String, Integer> products = buyers.get(entry1.name);
+            for (Discount entry2 : discountList) {
+                for (Product entry3 : productList) {
+                    for (Purchase entry4 : purchaseList) {
+                        products.put(entry3.productName, entry3.price * (100 - entry2.discount) / 100);
                     }
                 }
             }
         }
 
-        for (Map.Entry<String, HashMap<String, HashMap<String, Integer>>> entry1 : buyers.entrySet()) {
-            HashMap<String, HashMap<String, Integer>> cities = entry1.getValue();
-            for (Map.Entry<String, HashMap<String, Integer>> entry2 : cities.entrySet()) {
-                int S = 0;
+
+        for (Map.Entry<String, HashMap<String, HashMap<String, Integer>>> entry1 : cities.entrySet()) {
+            HashMap<String, HashMap<String, Integer>> buyers = entry1.getValue();
+            int S = 0;
+            for (Map.Entry<String, HashMap<String, Integer>> entry2 : buyers.entrySet()) {
                 HashMap<String, Integer> products = entry2.getValue();
                 for (Map.Entry<String, Integer> entry3 : products.entrySet()) {
                     S += entry3.getValue();
                 }
-                System.out.println(entry2.getKey() + ":" + S);
             }
+            System.out.println(entry1.getKey() + ": " + S);
         }
     }
 }
