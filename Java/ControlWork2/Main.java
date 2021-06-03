@@ -64,7 +64,7 @@ public class Main {
             s[i] = sc.nextLine();
             i++;
         }
-        
+
         fileReader.close();
 
         Map<String, Integer> map = Arrays.stream(s).collect(Collectors.toMap(

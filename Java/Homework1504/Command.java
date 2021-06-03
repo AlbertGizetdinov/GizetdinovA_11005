@@ -13,6 +13,4 @@ public @interface Command {
     boolean inProgress() default true;
     String example() default " ";
     String[] commands() default " ";
-
-
 }

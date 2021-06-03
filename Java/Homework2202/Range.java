@@ -3,10 +3,9 @@ import java.util.Iterator;
 
 public class Range implements Iterable<Integer> {
     protected final int length;
-    protected int counter;
+    protected int counter = 0;
 
     public Range(int length) {
-        counter = 0;
         this.length = length;
     }
 

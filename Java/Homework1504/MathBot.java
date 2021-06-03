@@ -50,7 +50,6 @@ public class MathBot {
         } catch (Exception e) {
             return "-> Что-то пошло не так, попробуйте ещё раз";
         }
-
     }
 
     @Command(id = 1, inProgress = false, name = "Команды", commands = {"help", "commands", "помощь"})
